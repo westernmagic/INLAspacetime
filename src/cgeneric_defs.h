@@ -9,7 +9,7 @@
 #include <string.h>
 #include <strings.h>
 
-#include <cgeneric.h>
+#include "cgeneric.h"
 
 #define Calloc(n_, type_)  (type_ *)calloc((n_), sizeof(type_))
 #define SQR(x) ((x)*(x))
