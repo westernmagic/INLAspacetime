@@ -6,6 +6,7 @@ Author: Elias Teixeira Krainski
 Maintainer: The package maintainer <elias@r-inla.org>
 Description: Functions to fit spatio-temporal models using INLA.
 Depends: Matrix, sp, INLA
+LinkingTo: INLA
 VignetteBuilder: knitr
 BuildVignettes: true
 License: GPL (>=2) 
