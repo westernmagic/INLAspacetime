@@ -1,4 +1,5 @@
 #include "cgeneric_defs.h"
+#include <stdio.h>
 
 // This version uses 'padded' matrices with zeroes
 double *inla_cgeneric_st121_model(inla_cgeneric_cmd_tp cmd, double *theta, inla_cgeneric_data_tp * data) {
@@ -73,6 +74,9 @@ double *inla_cgeneric_st121_model(inla_cgeneric_cmd_tp cmd, double *theta, inla_
   assert(nth<4);
   
   if (theta) {
+	printf("theta[0] = log(range_s) = %f\n", theta[0]);
+	printf("theta[1] = log(range_t) = %f\n", theta[1]);
+	printf("theta[2] = log(sigma)   = %f\n", theta[2]);
     // interpretable parameters 
     //  theta = log(range_s, range_t, sigma)
     //   a1,a2,a3 = log(g_s, g_t, g_e) 
@@ -96,6 +100,9 @@ double *inla_cgeneric_st121_model(inla_cgeneric_cmd_tp cmd, double *theta, inla_
       a3 = lc12 - a1 - 2*( theta[ith++] + a2) ;    // gs^2
     }
     assert(nth == ith);
+    printf("a1 = log(gamma_s) = %f\n", a1);
+    printf("a2 = log(gamma_t) = %f\n", a2);
+    printf("a3 = log(gamma_e) = %f\n", a3);
 
     params[0] = exp(a3 + a2*6);        //  g_s^6         * g_e^2
     params[1] = exp(a3 + a2*4)*3;      // 3g_s^4         * g_e^2
