@@ -91,6 +91,9 @@ double *inla_cgeneric_sstspde(inla_cgeneric_cmd_tp cmd, double *theta, inla_cgen
   assert(nth<4);
   
   if (theta) {
+    printf("theta[0] = log(range_s) = %f\n", theta[0]);
+    printf("theta[1] = log(range_t) = %f\n", theta[1]);
+    printf("theta[2] = log(sigma)   = %f\n", theta[2]);
     // interpretable parameters 
     //  theta = log(range_s, range_t, sigma)
     // g_s = sqrt(8 * v_s) / r_s ;
@@ -143,6 +146,10 @@ double *inla_cgeneric_sstspde(inla_cgeneric_cmd_tp cmd, double *theta, inla_cgen
       lg[2] = c3 +aaux*lg[0] -0.5*lg[1] - theta[ith++];
     }
     assert(nth == ith);
+
+    printf("lg[0] = log(gamma_s) = %f\n", lg[0]);
+    printf("lg[1] = log(gamma_t) = %f\n", lg[1]);
+    printf("lg[2] = log(gamma_e) = %f\n", lg[2]);
 
     k=0;
     for(i=0; i<nm; i++) {

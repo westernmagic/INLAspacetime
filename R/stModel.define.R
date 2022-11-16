@@ -44,11 +44,11 @@ stModel.define <-
         llib <- system.file("libs", package = "INLAspacetime")
         lmats <- upperPadding(mm[jmm], relative = FALSE)
         stopifnot(n == nrow(lmats$graph))
-
+        
         return(do.call(
             "inla.cgeneric.define",
             list(model = "inla_cgeneric_sstspde",
-                 shlib = paste0(llib, "/INLAspacetime"),
+                 shlib = paste0(llib, "/INLAspacetime.so"),
                  n = n, debug = 0L,
                  ii = lmats$graph@i,
                  jj = lmats$graph@j,

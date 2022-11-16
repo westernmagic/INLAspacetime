@@ -22,7 +22,7 @@ stModel.matrices <-
     function(smesh, tmesh, model)
 {
 
-    stopifnot(inherits(smesh, "inla.mesh"))
+    stopifnot(inherits(smesh, c("inla.mesh", "inla_mesh_3d")))
     stopifnot(inherits(tmesh, "inla.mesh.1d"))
     stopifnot(nchar(model)==3)
     stopifnot(model %in% c('102', '121', '202', '220'))
