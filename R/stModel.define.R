@@ -33,12 +33,16 @@ stModel.define <-
     stopifnot(dimension>0)
 
     alphas <- as.integer(strsplit(model, '')[[1]])
-    nu.t <- alphas[1]-1/2
-    alpha <- alphas[3] + alphas[2]*nu.t
-    nu.s <- alpha-dimension/2
+
+    alpha <- alphas[3] + alphas[2] * (alphas[1] - 0.5) # 1 + 2*0.5 = 2
+    nu.s <- alpha-dimension/2   #0.5
+    nu.t <-  min(alphas[1] - 0.5, nu.s / alphas[2]) # alphas[1]-1/2, 1/4  #0.5
 
     cc <- c(0.5*log(8*nu.s), -0.5*log(8*nu.t),
             0.5*(lgamma(nu.t) - lgamma(alphas[1]) -1.5*log(4*pi)))
+
+    cat("new version. alpha = ", alpha, ", nu.t = ", nu.t, ", cc = ", cc, "\n")
+
     if(Rmanifold) {
         cc[3] <- 0.5*(lgamma(nu.t) + lgamma(nu.s) -
                        lgamma(alphas[1]) -lgamma(alpha) -(dimension/2+0.5)*log(4*pi))
